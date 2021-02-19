@@ -71,11 +71,20 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, ViewCollectionActivity.class);
         intent.putExtras(bundle);
         startActivity(intent);
+        finish();
+        overridePendingTransition(0, 0);
     }
 
     public void newCollection(View view) {
         Intent intent = new Intent(MainActivity.this, AddCollectionActivity.class);
         startActivity(intent);
+        finish();
+        overridePendingTransition(0, 0);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        adapter.close();
+    }
 }

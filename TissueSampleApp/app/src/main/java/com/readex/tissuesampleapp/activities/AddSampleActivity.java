@@ -1,7 +1,9 @@
 package com.readex.tissuesampleapp.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -37,12 +39,57 @@ public class AddSampleActivity extends AppCompatActivity {
     }
 
     public void saveSample(View view) {
-        adapter.addSample(id, edtDonorCount.getText().toString(), edtMaterialType.getText().toString(), Calendar.getInstance().getTime().toString());
+        if (edtDonorCount.getText().toString().matches("") || edtMaterialType.getText().toString().matches("")) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Missing Fields")
+                    .setMessage("Please fill in all boxes before saving")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            return;
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
+        else {
+            adapter.addSample(id, edtDonorCount.getText().toString(), edtMaterialType.getText().toString(), Calendar.getInstance().getTime().toString());
 
+            Bundle bundle = new Bundle();
+            bundle.putString("id", id);
+            Intent intent = new Intent(AddSampleActivity.this, ViewCollectionActivity.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+            finish();
+            overridePendingTransition(0, 0);
+        }
+    }
+
+    public void goBack(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("id", id);
         Intent intent = new Intent(AddSampleActivity.this, ViewCollectionActivity.class);
         intent.putExtras(bundle);
         startActivity(intent);
+        finish();
+        overridePendingTransition(0, 0);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Bundle bundle = new Bundle();
+        bundle.putString("id", id);
+        Intent intent = new Intent(AddSampleActivity.this, ViewCollectionActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
+        finish();
+        overridePendingTransition(0, 0);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        adapter.close();
     }
 }

@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
+import android.provider.ContactsContract;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -95,7 +96,17 @@ public class TissueSampleProvider extends ContentProvider {
 
     @Override
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
-        return 0;
+        DatabaseAdapter adapter1 = new DatabaseAdapter(getContext());
+        adapter1.open();
+
+        switch (uriMatcher.match(uri)) {
+            case 1:
+                return adapter1.db.delete("collections", selection, selectionArgs);
+            case 3:
+                return adapter1.db.delete("samples", selection, selectionArgs);
+            default:
+                return 0;
+        }
     }
 
     @Override

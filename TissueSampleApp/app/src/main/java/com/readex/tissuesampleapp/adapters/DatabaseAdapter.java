@@ -73,4 +73,10 @@ public class DatabaseAdapter {
 
         context.getContentResolver().insert(TissueSampleProviderContract.SAMPLES_URI, values);
     }
+
+    public void deleteCollection(String id) {
+        String collectionId[] = { id };
+        context.getContentResolver().delete(TissueSampleProviderContract.COLLECTIONS_URI, "_id = ?", collectionId);
+        context.getContentResolver().delete(TissueSampleProviderContract.SAMPLES_URI, "collection_id = ?", collectionId);
+    }
 }

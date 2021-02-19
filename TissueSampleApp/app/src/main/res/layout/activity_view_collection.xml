@@ -17,11 +17,33 @@
         android:textAlignment="center"
         android:text="Collection Title"/>
 
+    <TextView
+        android:id="@+id/txtSamplesTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtTitle"
+        android:text="Samples:"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
+
     <ListView
         android:id="@+id/lstSamples"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/txtTitle"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtSamplesTitle"/>
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="200dp"
+        android:text="Back"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lstSamples"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:onClick="goBack"
+        android:background="@color/purple_200"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnNewSample"
@@ -33,5 +55,17 @@
         android:src="@drawable/add"
         android:onClick="newSample"
         android:backgroundTint="@color/purple_500" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnDeleteCollection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="16dp"
+        android:src="@drawable/delete"
+        android:onClick="deleteCollection"
+        android:backgroundTint="#FF0000" />
+
 
 </RelativeLayout>

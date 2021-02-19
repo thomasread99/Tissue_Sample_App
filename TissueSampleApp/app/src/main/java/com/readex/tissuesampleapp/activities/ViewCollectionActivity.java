@@ -1,7 +1,9 @@
 package com.readex.tissuesampleapp.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -77,6 +79,49 @@ public class ViewCollectionActivity extends AppCompatActivity {
         Intent intent = new Intent(ViewCollectionActivity.this, AddSampleActivity.class);
         intent.putExtras(bundle);
         startActivity(intent);
+        finish();
+        overridePendingTransition(0, 0);
+    }
+
+    public void deleteCollection(View view) {
+        new AlertDialog.Builder(this)
+                .setTitle("Delete Collection")
+                .setMessage("Are you sure you want to delete this collection?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        adapter.deleteCollection(id);
+                        Intent intent = new Intent(ViewCollectionActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                        overridePendingTransition(0, 0);
+                    }
+                })
+                .setNegativeButton(android.R.string.no, null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
+    public void goBack(View view) {
+        Intent intent = new Intent(ViewCollectionActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+        overridePendingTransition(0, 0);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(ViewCollectionActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+        overridePendingTransition(0, 0);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        adapter.close();
     }
 
 }
