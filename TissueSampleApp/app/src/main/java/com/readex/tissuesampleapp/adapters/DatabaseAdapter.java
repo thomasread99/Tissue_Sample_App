@@ -1,10 +1,13 @@
-package com.readex.tissuesampleapp;
+package com.readex.tissuesampleapp.adapters;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
+
+import com.readex.tissuesampleapp.utils.DatabaseHelper;
+import com.readex.tissuesampleapp.database.TissueSampleProviderContract;
 
 public class DatabaseAdapter {
 
@@ -51,5 +54,23 @@ public class DatabaseAdapter {
                 "WHERE c._id == ?", collectionId);
 
         return cursor;
+    }
+
+    public void addCollection(String title, String diseaseTerm) {
+        ContentValues values = new ContentValues();
+        values.put(TissueSampleProviderContract.TITLE, title);
+        values.put(TissueSampleProviderContract.DISEASE_TERM, diseaseTerm);
+
+        context.getContentResolver().insert(TissueSampleProviderContract.COLLECTIONS_URI, values);
+    }
+
+    public void addSample(String collectionID, String donorCount, String materialType, String lastUpdated) {
+        ContentValues values = new ContentValues();
+        values.put(TissueSampleProviderContract.COLLECTION_ID, collectionID);
+        values.put(TissueSampleProviderContract.DONOR_COUNT, donorCount);
+        values.put(TissueSampleProviderContract.MATERIAL_TYPE, materialType);
+        values.put(TissueSampleProviderContract.LAST_UPDATED, lastUpdated);
+
+        context.getContentResolver().insert(TissueSampleProviderContract.SAMPLES_URI, values);
     }
 }

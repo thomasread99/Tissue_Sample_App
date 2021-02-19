@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.AddSampleActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add a Sample"
+        android:textSize="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/edtMaterialType"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
+        android:hint="Material Type"/>
+
+    <EditText
+        android:id="@+id/edtDonorCount"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtMaterialType"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:hint="Donor Count"
+        android:inputType="number"/>
+
+    <Button
+        android:id="@+id/btnSaveSample"
+        android:layout_width="200dp"
+        android:text="Save"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtDonorCount"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:onClick="saveSample"
+        android:background="@color/purple_500"/>
+
+</RelativeLayout>

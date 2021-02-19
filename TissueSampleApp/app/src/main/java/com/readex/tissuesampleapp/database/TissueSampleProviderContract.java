@@ -1,10 +1,10 @@
-package com.readex.tissuesampleapp;
+package com.readex.tissuesampleapp.database;
 
 import android.net.Uri;
 
 public class TissueSampleProviderContract {
 
-    public static final String AUTHORITY = "com.readex.tissuesampleapp.TissueSampleProvider";
+    public static final String AUTHORITY = "com.readex.tissuesampleapp.database.TissueSampleProvider";
 
     public static final Uri COLLECTIONS_URI = Uri.parse("content://" + AUTHORITY + "/collections");
     public static final Uri SAMPLES_URI = Uri.parse("content://" + AUTHORITY + "/samples");

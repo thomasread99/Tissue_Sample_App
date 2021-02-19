@@ -4,18 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewCollectionActivity">
+    tools:context=".activities.ViewCollectionActivity">
 
     <TextView
         android:id="@+id/txtTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="40dp"/>
+        android:textSize="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:text="Collection Title"/>
 
     <ListView
         android:id="@+id/lstSamples"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/txtTitle"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnNewSample"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        android:src="@drawable/add"
+        android:onClick="newSample"
+        android:backgroundTint="@color/purple_500" />
 
 </RelativeLayout>

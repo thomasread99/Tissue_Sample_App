@@ -7,8 +7,13 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.readex.tissuesampleapp.activities.AddCollectionActivity;
+import com.readex.tissuesampleapp.activities.ViewCollectionActivity;
+import com.readex.tissuesampleapp.adapters.CollectionAdapter;
+import com.readex.tissuesampleapp.adapters.DatabaseAdapter;
+import com.readex.tissuesampleapp.models.Collection;
 
 import java.util.ArrayList;
 
@@ -65,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
         bundle.putString("id", id);
         Intent intent = new Intent(MainActivity.this, ViewCollectionActivity.class);
         intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    public void newCollection(View view) {
+        Intent intent = new Intent(MainActivity.this, AddCollectionActivity.class);
         startActivity(intent);
     }
 

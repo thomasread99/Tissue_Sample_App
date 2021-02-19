@@ -1,4 +1,4 @@
-package com.readex.tissuesampleapp;
+package com.readex.tissuesampleapp.models;
 
 import java.text.SimpleDateFormat;
 

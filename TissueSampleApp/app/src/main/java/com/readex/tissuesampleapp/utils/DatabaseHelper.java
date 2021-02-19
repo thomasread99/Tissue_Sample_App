@@ -1,4 +1,4 @@
-package com.readex.tissuesampleapp;
+package com.readex.tissuesampleapp.utils;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

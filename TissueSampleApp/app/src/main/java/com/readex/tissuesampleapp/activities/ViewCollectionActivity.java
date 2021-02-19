@@ -1,12 +1,19 @@
-package com.readex.tissuesampleapp;
+package com.readex.tissuesampleapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.readex.tissuesampleapp.MainActivity;
+import com.readex.tissuesampleapp.adapters.DatabaseAdapter;
+import com.readex.tissuesampleapp.R;
+import com.readex.tissuesampleapp.models.Sample;
+import com.readex.tissuesampleapp.adapters.SampleAdapter;
 
 import java.util.ArrayList;
 
@@ -62,6 +69,14 @@ public class ViewCollectionActivity extends AppCompatActivity {
         SampleAdapter adapter = new SampleAdapter(this, samples);
 
         lstSamples.setAdapter(adapter);
+    }
+
+    public void newSample(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putString("id", id);
+        Intent intent = new Intent(ViewCollectionActivity.this, AddSampleActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
 }

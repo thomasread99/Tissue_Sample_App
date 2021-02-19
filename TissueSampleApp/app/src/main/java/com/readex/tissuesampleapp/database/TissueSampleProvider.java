@@ -1,15 +1,16 @@
-package com.readex.tissuesampleapp;
+package com.readex.tissuesampleapp.database;
 
 import android.content.ContentProvider;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
-import android.provider.ContactsContract;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.readex.tissuesampleapp.adapters.DatabaseAdapter;
 
 public class TissueSampleProvider extends ContentProvider {
 
@@ -67,7 +68,29 @@ public class TissueSampleProvider extends ContentProvider {
     @Nullable
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
-        return null;
+        DatabaseAdapter adapter1 = new DatabaseAdapter(getContext());
+        adapter1.open();
+
+        String table;
+
+        switch (uriMatcher.match(uri)) {
+            case 1:
+                table = "collections";
+                break;
+            case 3:
+                table = "samples";
+                break;
+            default:
+                return null;
+        }
+
+        long id = adapter1.db.insert(table, null, values);
+        adapter1.db.close();
+
+        Uri newUri = ContentUris.withAppendedId(uri, id);
+        getContext().getContentResolver().notifyChange(newUri, null);
+
+        return newUri;
     }
 
     @Override

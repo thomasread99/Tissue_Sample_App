@@ -1,4 +1,4 @@
-package com.readex.tissuesampleapp;
+package com.readex.tissuesampleapp.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.readex.tissuesampleapp.models.Collection;
+import com.readex.tissuesampleapp.R;
 
 import java.util.ArrayList;
 
