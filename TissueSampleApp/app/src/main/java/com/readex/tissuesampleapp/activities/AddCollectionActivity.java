@@ -15,8 +15,10 @@ import com.readex.tissuesampleapp.adapters.DatabaseAdapter;
 
 public class AddCollectionActivity extends AppCompatActivity {
 
+    //Adapters
     private DatabaseAdapter adapter;
 
+    //UI elements
     private EditText edtTitle, edtDiseaseTerm;
 
     @Override
@@ -24,14 +26,21 @@ public class AddCollectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_collection);
 
+        //Instantiate the database adapter
         adapter = new DatabaseAdapter(this);
         adapter.open();
 
+        //Instantiate the UI elements
         edtTitle = findViewById(R.id.edtTitle);
         edtDiseaseTerm = findViewById(R.id.edtDiseaseTerm);
     }
 
+    /**
+     * Save the new collection to the database on button press
+     * @param view
+     */
     public void saveCollection(View view) {
+        //Check that all the fields have been filled in
         if (edtTitle.getText().toString().matches("") || edtDiseaseTerm.getText().toString().matches("")) {
             new AlertDialog.Builder(this)
                     .setTitle("Missing Fields")
@@ -46,8 +55,10 @@ public class AddCollectionActivity extends AppCompatActivity {
                     .show();
         }
         else {
+            //Save the new collection to the database
             adapter.addCollection(edtTitle.getText().toString(), edtDiseaseTerm.getText().toString());
 
+            //Return to the main activity
             Intent intent = new Intent(AddCollectionActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -55,22 +66,34 @@ public class AddCollectionActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Return to the main activity on button press
+     * @param view
+     */
     public void goBack(View view) {
+        //Return to the main activity
         Intent intent = new Intent(AddCollectionActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
         overridePendingTransition(0, 0);
     }
 
+    /**
+     * Return to the main activity on back button press
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        //Return to the main activity
         Intent intent = new Intent(AddCollectionActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
         overridePendingTransition(0, 0);
     }
 
+    /**
+     * Close the adapter when the activity is destroyed
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();

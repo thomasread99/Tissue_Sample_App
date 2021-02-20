@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+
+    //SQL to create the required tables when app is first launched
     private static final String CREATE_COLLECTIONS_TABLE = "CREATE TABLE collections (\n" +
             "_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "disease_term VARCHAR(128) NOT NULL,\n" +
@@ -27,11 +29,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, "tissueSampleDB", null, 8);
     }
 
+    /**
+     * Create the tables and initial values when the app is first launched
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //Create the database tables
         db.execSQL(CREATE_COLLECTIONS_TABLE);
         db.execSQL(CREATE_SAMPLES_TABLE);
 
+        //Insert values into the collections table
         db.execSQL("INSERT INTO collections (disease_term, title) " +
                 "VALUES " +
                 "('" + "Cirrhosis of liver" + "','" + "Mothers Pregnancy Samples" + "')");
@@ -48,6 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "VALUES " +
                 "('" + "Malignant tumour of breast" + "','" + "A randomised placebo-controlled trial" + "')");
 
+        //Insert values into the samples table
         db.execSQL("INSERT INTO samples (collection_id, donor_count, material_type, last_updated) " +
                 "VALUES " +
                 "('" + "4" + "','" + "90210" + "','" + "Cerebrospinal fluid" + "','" + "2019-06-03" + "')");

@@ -1,7 +1,8 @@
 package com.readex.tissuesampleapp.models;
 
-import java.text.SimpleDateFormat;
-
+/**
+ * Custom sample item model
+ */
 public class Sample {
 
     private String materialType;
@@ -10,12 +11,21 @@ public class Sample {
 
     public Sample () {}
 
+    /**
+     * Constructor to assign the values
+     * @param materialType
+     * @param donorCount
+     * @param lastUpdated
+     */
     public Sample(String materialType, int donorCount, String lastUpdated) {
         this.materialType = materialType;
         this.donorCount = donorCount;
         this.lastUpdated = lastUpdated;
     }
 
+    /**
+     * Getters and setters
+     */
     public String getMaterialType() {
         return materialType;
     }

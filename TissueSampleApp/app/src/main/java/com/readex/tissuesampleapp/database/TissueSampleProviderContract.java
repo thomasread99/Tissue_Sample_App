@@ -2,6 +2,9 @@ package com.readex.tissuesampleapp.database;
 
 import android.net.Uri;
 
+/**
+ * Content provider contract, specifying the URI for all tables and their fields
+ */
 public class TissueSampleProviderContract {
 
     public static final String AUTHORITY = "com.readex.tissuesampleapp.database.TissueSampleProvider";
